@@ -15,7 +15,9 @@ interface LogoProps {
 /**
  * Primary UI component for user interaction
  */
-export function Logo({src, text}: LogoProps) {
+export function Logo(props: LogoProps) {
+    const {src, text} = props;
+
     const isValidSource = typeof src === 'string' && src.trim() !== '';
 
     return (

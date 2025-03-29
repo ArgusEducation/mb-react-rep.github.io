@@ -1,23 +1,8 @@
 import React from 'react';
 import s from './operationdisplay.module.sass';
+import {ShortOperationDisplayProps} from "src/stories/personal/accounting/ShortOperationDisplay";
 
-interface FullOperationDisplayProps {
-    /**
-     * Accounting operation amount
-     */
-    amount: number;
-    /**
-     * Accounting category
-     */
-    category: string;
-    /**
-     * Custom operation title
-     */
-    title?: string;
-    /**
-     * Custom operation description
-     */
-    description?: string;
+interface FullOperationDisplayProps extends ShortOperationDisplayProps {
     /**
      * Operation date
      */
@@ -27,7 +12,9 @@ interface FullOperationDisplayProps {
 /**
  * Primary UI component for user interaction
  */
-export function FullOperationDisplay({amount, category, title, description, date}: FullOperationDisplayProps) {
+export function FullOperationDisplay(props: FullOperationDisplayProps) {
+    const { amount, category, title, description, date } = props;
+
     return (
         <div className={s.full}>
             <div>Сумма: {amount}</div>

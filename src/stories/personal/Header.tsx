@@ -12,7 +12,9 @@ interface HeaderProps {
 /**
  * Primary UI component for user interaction
  */
-export function Header({logo}: HeaderProps) {
+export function Header(props: HeaderProps) {
+    const { logo } = props;
+
     return (
         <div className={s.header}>
             {logo}

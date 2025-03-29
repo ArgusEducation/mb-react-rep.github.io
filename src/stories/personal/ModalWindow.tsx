@@ -20,7 +20,9 @@ interface ModalWindowProps {
 /**
  * Primary UI component for user interaction
  */
-export function ModalWindow({visible=true, children}: ModalWindowProps) {
+export function ModalWindow(props: ModalWindowProps) {
+    const { visible = true, children, onClose } = props;
+
     if (!visible) {
         return null;
     }

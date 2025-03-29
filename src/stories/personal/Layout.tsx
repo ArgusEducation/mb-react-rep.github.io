@@ -12,7 +12,9 @@ interface LayoutProps {
 /**
  * Primary UI component for user interaction
  */
-export function Layout({header}: LayoutProps) {
+export function Layout(props: LayoutProps) {
+    const {header} = props;
+
     return (
         <div className={s.layout}>
             {header}

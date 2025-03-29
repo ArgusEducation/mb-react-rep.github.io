@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './operationdisplay.module.sass';
 
-interface ShortOperationDisplayProps {
+export interface ShortOperationDisplayProps {
     /**
      * Accounting operation amount
      */
@@ -23,7 +23,9 @@ interface ShortOperationDisplayProps {
 /**
  * Primary UI component for user interaction
  */
-export function ShortOperationDisplay({amount, category, title, description}: ShortOperationDisplayProps) {
+export function ShortOperationDisplay(props: ShortOperationDisplayProps) {
+    const { amount, category, title, description } = props;
+
     let slicedDesc;
     if (description && description.trim() !== '') {
         const ellipsis = '...';
