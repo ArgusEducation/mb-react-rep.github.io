@@ -1,0 +1,13 @@
+{
+  "esversion": 6,
+  "globals": {
+    "module": true,
+    "describe": true,
+    "it": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "expect": true,
+    "$": false
+  },
+  "node": true
+}
