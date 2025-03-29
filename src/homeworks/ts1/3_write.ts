@@ -54,3 +54,100 @@
  * Принимает дату создания (строка)
  * */
 // export const createRandomOperation = (createdAt: string) => {};
+
+type Category = {
+    id: string;
+    name: string;
+    photo?: string;
+};
+
+type Product = {
+    id: string;
+    name: string;
+    photo: string;
+    desc?: string;
+    createdAt: string;
+    oldPrice?: number;
+    price: number;
+    category: Category;
+};
+
+type Operation = Cost | Profit;
+
+type Cost = {
+    id: string;
+    name: string;
+    desc?: string;
+    createdAt: string;
+    amount: number;
+    category: Category;
+    type: 'Cost';
+};
+
+type Profit = {
+    id: string;
+    name: string;
+    desc?: string;
+    createdAt: string;
+    amount: number;
+    category: Category;
+    type: 'Profit';
+};
+
+const generateRandomString = (length: number): string => {
+    // Просто потому что id: string
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+};
+
+const createRandomCategory = (): Category => {
+    const id = generateRandomString(10);
+    return {
+        id:id,
+        name: `Category ${id}`,
+        photo: Math.random() > 0.5 ? `https://example.com/photo${id}.jpg` : undefined,
+    };
+};
+
+export const createRandomProduct = (createdAt: string): Product => {
+    const id = generateRandomString(10);
+    return {
+        id: id,
+        name: `Product ${id}`,
+        photo: `https://example.com/photo${id}.jpg`,
+        desc: Math.random() > 0.5 ? `Description for product ${id}` : undefined,
+        createdAt,
+        oldPrice: Math.random() > 0.5 ? Math.floor(Math.random() * 1000) : undefined,
+        price: Math.floor(Math.random() * 1000),
+        category: createRandomCategory(),
+    };
+};
+
+export const createRandomOperation = (createdAt: string): Operation => {
+    const isCostOperationType = Math.random() > 0.5; // случайно выбираем тип операции
+    const id = generateRandomString(10);
+    const baseOperation = {
+        id: id,
+        name: `Operation ${id}`,
+        desc: Math.random() > 0.5 ? `Description for operation ${id}` : undefined,
+        createdAt,
+        amount: Math.floor(Math.random() * 1000),
+        category: createRandomCategory(),
+    };
+
+    if (isCostOperationType) {
+        return {
+            ...baseOperation,
+            type: 'Cost',
+        } as Cost;
+    } else {
+        return {
+            ...baseOperation,
+            type: 'Profit',
+        } as Profit;
+    }
+};
